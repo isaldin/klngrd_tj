@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		AC46D5601AF4943200E2A0C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D55F1AF4943200E2A0C3 /* main.m */; };
 		AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5621AF4943200E2A0C3 /* AppDelegate.m */; };
-		AC46D5661AF4943200E2A0C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5651AF4943200E2A0C3 /* ViewController.m */; };
 		AC46D5691AF4943200E2A0C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC46D5671AF4943200E2A0C3 /* Main.storyboard */; };
 		AC46D56B1AF4943200E2A0C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC46D56A1AF4943200E2A0C3 /* Images.xcassets */; };
 		AC46D56E1AF4943200E2A0C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC46D56C1AF4943200E2A0C3 /* LaunchScreen.xib */; };
 		AC46D57A1AF4943200E2A0C3 /* klngrd_tjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5791AF4943200E2A0C3 /* klngrd_tjTests.m */; };
+		AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +32,14 @@
 		AC46D55F1AF4943200E2A0C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC46D5611AF4943200E2A0C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AC46D5621AF4943200E2A0C3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AC46D5641AF4943200E2A0C3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AC46D5651AF4943200E2A0C3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AC46D5681AF4943200E2A0C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC46D56A1AF4943200E2A0C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AC46D56D1AF4943200E2A0C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AC46D5731AF4943200E2A0C3 /* klngrd_tjTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = klngrd_tjTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC46D5781AF4943200E2A0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC46D5791AF4943200E2A0C3 /* klngrd_tjTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = klngrd_tjTests.m; sourceTree = "<group>"; };
+		AC46D5831AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAndChooseUserTableViewController.h; sourceTree = "<group>"; };
+		AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndChooseUserTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +83,12 @@
 			children = (
 				AC46D5611AF4943200E2A0C3 /* AppDelegate.h */,
 				AC46D5621AF4943200E2A0C3 /* AppDelegate.m */,
-				AC46D5641AF4943200E2A0C3 /* ViewController.h */,
-				AC46D5651AF4943200E2A0C3 /* ViewController.m */,
 				AC46D5671AF4943200E2A0C3 /* Main.storyboard */,
 				AC46D56A1AF4943200E2A0C3 /* Images.xcassets */,
 				AC46D56C1AF4943200E2A0C3 /* LaunchScreen.xib */,
 				AC46D55D1AF4943200E2A0C3 /* Supporting Files */,
+				AC46D5831AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.h */,
+				AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */,
 			);
 			path = klngrd_tj;
 			sourceTree = "<group>";
@@ -219,8 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC46D5661AF4943200E2A0C3 /* ViewController.m in Sources */,
 				AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */,
+				AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */,
 				AC46D5601AF4943200E2A0C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
