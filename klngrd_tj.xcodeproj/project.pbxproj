@@ -15,6 +15,7 @@
 		AC46D57A1AF4943200E2A0C3 /* klngrd_tjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5791AF4943200E2A0C3 /* klngrd_tjTests.m */; };
 		AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */; };
 		AC46D5881AF4AD4E00E2A0C3 /* UserNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */; };
+		AC46D58B1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAndChooseUserTableViewController.m; sourceTree = "<group>"; };
 		AC46D5861AF4AD4E00E2A0C3 /* UserNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNameCell.h; sourceTree = "<group>"; };
 		AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNameCell.m; sourceTree = "<group>"; };
+		AC46D5891AF4DFBD00E2A0C3 /* ImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesCollectionViewController.h; sourceTree = "<group>"; };
+		AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */,
 				AC46D5861AF4AD4E00E2A0C3 /* UserNameCell.h */,
 				AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */,
+				AC46D5891AF4DFBD00E2A0C3 /* ImagesCollectionViewController.h */,
+				AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */,
 			);
 			path = klngrd_tj;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */,
 				AC46D5881AF4AD4E00E2A0C3 /* UserNameCell.m in Sources */,
 				AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */,
+				AC46D58B1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m in Sources */,
 				AC46D5601AF4943200E2A0C3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

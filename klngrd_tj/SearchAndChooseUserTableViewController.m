@@ -11,6 +11,7 @@
 
 #import "SearchAndChooseUserTableViewController.h"
 #import "UserNameCell.h"
+#import "ImagesCollectionViewController.h"
 
 @interface SearchAndChooseUserTableViewController ()
 
@@ -130,4 +131,11 @@
     [self.searchBar resignFirstResponder];
 }
 
+#pragma mark segue preparation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *selectedUserName = _parsedResponse[[self.tableView indexPathForSelectedRow].row];
+    ImagesCollectionViewController *vc = [segue destinationViewController];
+    vc.userName = selectedUserName;
+}
 @end
