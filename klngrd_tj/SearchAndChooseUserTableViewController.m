@@ -6,95 +6,128 @@
 //  Copyright (c) 2015 sald.in. All rights reserved.
 //
 
+#define instagramClientID @"b9e8581bbbab4c7db875b9deb5d32a38"
+#define instagramApiSearchUserStringFormat @"https://api.instagram.com/v1/users/search?q=%@&client_id=%@"
+
 #import "SearchAndChooseUserTableViewController.h"
+#import "UserNameCell.h"
 
 @interface SearchAndChooseUserTableViewController ()
 
 @end
 
 @implementation SearchAndChooseUserTableViewController
+{
+    NSArray *_parsedResponse;
+    NSURLSession *_session;
+};
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+
+    self.searchBar.delegate = self;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    _parsedResponse = @[];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)startNewSearchUsersTaskWithUsernameString:(NSString *)usernameString
+{
+    NSString *urlString = [NSString stringWithFormat:instagramApiSearchUserStringFormat, usernameString, instagramClientID];
+    NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(!error){
+            NSLog(@"datatask complete");
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            _parsedResponse = [self parseApiResponse:json];
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+
+    [dataTask resume];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSArray *)parseApiResponse:(NSDictionary *)json
+{
+    if(!json[@"meta"] || ![json[@"meta"][@"code"] isEqual:@(200)]){
+        return @[];
+    }
+
+    NSMutableArray *parsedResponse = [NSMutableArray array];
+
+    [json[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [parsedResponse addObject:@{
+                @"username": obj[@"username"] ? : @"",
+                @"full_name": obj[@"full_name"] ? : @"",
+                @"avatar": obj[@"profile_picture"] ? : @"",
+                @"id": obj[@"id"] ? : @""
+        }];
+    }];
+
+    return parsedResponse;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+#pragma mark searchDisplayController delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [_session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        NSLog(@"datatasks count: %d", dataTasks.count);
+        [dataTasks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSURLSessionDataTask *dataTask = obj;
+            [dataTask cancel];
+        }];
+    }];
+
+    NSLog(@"search string is [%@]", searchText);
+
+    if([searchText isEqualToString:@""]){
+        _parsedResponse = @[];
+        [self.tableView reloadData];
+    }
+    else{
+        [self startNewSearchUsersTaskWithUsernameString:searchText];
+    }
+}
+
+#pragma mark - Table view datasource & delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _parsedResponse.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *userRecord = _parsedResponse[indexPath.row];
+
+    static NSString *cellID = @"UserInfoCellID";
+    UserNameCell *cell = (UserNameCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
+    [cell configWithUserRecord:userRecord];
+
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 108.f;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

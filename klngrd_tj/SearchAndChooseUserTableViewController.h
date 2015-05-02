@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchAndChooseUserTableViewController : UITableViewController
+@interface SearchAndChooseUserTableViewController : UITableViewController<UISearchBarDelegate>
+
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 
 @end
