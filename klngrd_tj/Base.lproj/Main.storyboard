@@ -265,7 +265,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="Epi-Y1-PD7">
                             <size key="itemSize" width="75" height="75"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="150" height="30"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -283,7 +283,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             </variation>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square-checkmark-128.png" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-he-Ibz">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-he-Ibz">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="55" y="55" width="20" height="20"/>
@@ -312,6 +312,9 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Klv-jM-FVG">
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="TGn-oY-IEj" id="CRt-p8-5ia"/>
                             <outlet property="delegate" destination="TGn-oY-IEj" id="Oa1-I5-mYQ"/>
@@ -341,7 +344,4 @@
             <point key="canvasLocation" x="1083" y="-414"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="square-checkmark-128.png" width="74" height="74"/>
-    </resources>
 </document>

@@ -20,9 +20,9 @@
     });
 }
 
-- (void)picked:(BOOL)isPicked;
+- (void)setIndicatorImageName:(NSString *)imageName
 {
-    self.imgViewSelectionIndicator.hidden = !isPicked;
+    [self.imgViewSelectionIndicator setImage:[UIImage imageNamed:imageName]];
 }
 
 @end

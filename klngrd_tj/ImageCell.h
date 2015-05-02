@@ -15,6 +15,6 @@
 
 - (void)configWithImageURLString:(NSString *)urlString;
 
-- (void)picked:(BOOL)isPicked;
+- (void)setIndicatorImageName:(NSString *)imageName;
 
 @end

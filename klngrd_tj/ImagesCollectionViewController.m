@@ -39,16 +39,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)fetchBestPhotosForCurrentUser
 {
     NSString *fetchingURL = [InstagramAPI buildRecentImagesURLStringForUsernameWithId:self.user[@"id"]];
@@ -101,10 +91,12 @@
     if(indexPath.section == 0){
         NSString *imgURLString = _selectedImages[indexPath.row];
         [cell configWithImageURLString:imgURLString];
+        [cell setIndicatorImageName:@"minus_icon"];
     }
     else{
         NSString *imgURLString = _deselectedImages[indexPath.row];
         [cell configWithImageURLString:imgURLString];
+        [cell setIndicatorImageName:@"add_icon"];
     }
 
     return cell;
@@ -113,6 +105,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0){
+        ImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        [cell setIndicatorImageName:@"add_icon"];
         NSString *tappedImageURL = [_selectedImages objectAtIndex:indexPath.row];
         [_selectedImages removeObject:tappedImageURL];
         [_deselectedImages addObject:tappedImageURL];
@@ -120,12 +114,19 @@
         [collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:_deselectedImages.count-1 inSection:1]];
     }
     else{
+        ImageCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        [cell setIndicatorImageName:@"minus_icon"];
         NSString *tappedImageURL = [_deselectedImages objectAtIndex:indexPath.row];
         [_deselectedImages removeObject:tappedImageURL];
         [_selectedImages addObject:tappedImageURL];
 
         [collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:_selectedImages.count-1 inSection:0]];
     }
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)sectionNumber
+{
+    return CGSizeMake(150.f, 30.f);
 }
 
 #pragma mark <UICollectionViewDelegate>
