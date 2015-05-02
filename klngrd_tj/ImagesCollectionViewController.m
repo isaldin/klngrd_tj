@@ -7,28 +7,34 @@
 //
 
 #import "ImagesCollectionViewController.h"
+#import "ImageCell.h"
+#import "InstagramAPI.h"
 
 @interface ImagesCollectionViewController ()
 
 @end
 
 @implementation ImagesCollectionViewController
-
-static NSString * const reuseIdentifier = @"Cell";
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
+{
+    NSURLSession *_session;
+    NSMutableArray *_selectedImages;
+    NSMutableArray *_deselectedImages;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    _selectedImages = [NSMutableArray array];
+    _deselectedImages = [NSMutableArray array];
+
+    _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [self fetchBestPhotosForCurrentUser];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -43,25 +49,83 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
+- (void)fetchBestPhotosForCurrentUser
+{
+    NSString *fetchingURL = [InstagramAPI buildRecentImagesURLStringForUsernameWithId:self.user[@"id"]];
+    NSLog(@"%@", fetchingURL);
+
+    NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:fetchingURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        _selectedImages = [NSMutableArray arrayWithArray:[self parseResponse:json]];
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }];
+
+    [dataTask resume];
+}
+
+- (NSArray *)parseResponse:(NSDictionary *)json
+{
+    if(!json[@"meta"] || ![json[@"meta"][@"code"] isEqual:@(200)]){
+        return @[];
+    }
+
+    NSMutableArray *parsedResponse = [NSMutableArray array];
+    [json[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [parsedResponse addObject:obj[@"images"][@"thumbnail"][@"url"]];
+    }];
+
+    return parsedResponse;
+}
+
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 2;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return section == 0 ? _selectedImages.count : _deselectedImages.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * const reuseIdentifier = @"ImageCellID";
+
+    ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    if(indexPath.section == 0){
+        NSString *imgURLString = _selectedImages[indexPath.row];
+        [cell configWithImageURLString:imgURLString];
+    }
+    else{
+        NSString *imgURLString = _deselectedImages[indexPath.row];
+        [cell configWithImageURLString:imgURLString];
+    }
+
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0){
+        NSString *tappedImageURL = [_selectedImages objectAtIndex:indexPath.row];
+        [_selectedImages removeObject:tappedImageURL];
+        [_deselectedImages addObject:tappedImageURL];
+
+        [collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:_deselectedImages.count-1 inSection:1]];
+    }
+    else{
+        NSString *tappedImageURL = [_deselectedImages objectAtIndex:indexPath.row];
+        [_deselectedImages removeObject:tappedImageURL];
+        [_selectedImages addObject:tappedImageURL];
+
+        [collectionView moveItemAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForItem:_selectedImages.count-1 inSection:0]];
+    }
 }
 
 #pragma mark <UICollectionViewDelegate>

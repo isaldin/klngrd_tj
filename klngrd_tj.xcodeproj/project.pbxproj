@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C352142302FCE64274893ED /* InstagramAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3521E55B789D5EC3132880 /* InstagramAPI.m */; };
 		AC46D5601AF4943200E2A0C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D55F1AF4943200E2A0C3 /* main.m */; };
 		AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5621AF4943200E2A0C3 /* AppDelegate.m */; };
 		AC46D5691AF4943200E2A0C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC46D5671AF4943200E2A0C3 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 		AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */; };
 		AC46D5881AF4AD4E00E2A0C3 /* UserNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */; };
 		AC46D58B1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */; };
+		AC46D58E1AF4E1E500E2A0C3 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D58D1AF4E1E500E2A0C3 /* ImageCell.m */; };
+		AC46D5901AF4FCC200E2A0C3 /* square-checkmark-128.png in Resources */ = {isa = PBXBuildFile; fileRef = AC46D58F1AF4FCC200E2A0C3 /* square-checkmark-128.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C3521E55B789D5EC3132880 /* InstagramAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramAPI.m; sourceTree = "<group>"; };
+		7C352259FF719B09C07D2003 /* InstagramAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramAPI.h; sourceTree = "<group>"; };
 		AC46D55A1AF4943100E2A0C3 /* klngrd_tj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = klngrd_tj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC46D55E1AF4943200E2A0C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC46D55F1AF4943200E2A0C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -46,6 +51,9 @@
 		AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNameCell.m; sourceTree = "<group>"; };
 		AC46D5891AF4DFBD00E2A0C3 /* ImagesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesCollectionViewController.h; sourceTree = "<group>"; };
 		AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesCollectionViewController.m; sourceTree = "<group>"; };
+		AC46D58C1AF4E1E500E2A0C3 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		AC46D58D1AF4E1E500E2A0C3 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		AC46D58F1AF4FCC200E2A0C3 /* square-checkmark-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-checkmark-128.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,18 +95,23 @@
 		AC46D55C1AF4943200E2A0C3 /* klngrd_tj */ = {
 			isa = PBXGroup;
 			children = (
+				AC46D58F1AF4FCC200E2A0C3 /* square-checkmark-128.png */,
 				AC46D5611AF4943200E2A0C3 /* AppDelegate.h */,
 				AC46D5621AF4943200E2A0C3 /* AppDelegate.m */,
 				AC46D5671AF4943200E2A0C3 /* Main.storyboard */,
 				AC46D56A1AF4943200E2A0C3 /* Images.xcassets */,
 				AC46D56C1AF4943200E2A0C3 /* LaunchScreen.xib */,
-				AC46D55D1AF4943200E2A0C3 /* Supporting Files */,
 				AC46D5831AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.h */,
 				AC46D5841AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m */,
 				AC46D5861AF4AD4E00E2A0C3 /* UserNameCell.h */,
 				AC46D5871AF4AD4E00E2A0C3 /* UserNameCell.m */,
 				AC46D5891AF4DFBD00E2A0C3 /* ImagesCollectionViewController.h */,
 				AC46D58A1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m */,
+				AC46D58C1AF4E1E500E2A0C3 /* ImageCell.h */,
+				AC46D58D1AF4E1E500E2A0C3 /* ImageCell.m */,
+				AC46D55D1AF4943200E2A0C3 /* Supporting Files */,
+				7C3521E55B789D5EC3132880 /* InstagramAPI.m */,
+				7C352259FF719B09C07D2003 /* InstagramAPI.h */,
 			);
 			path = klngrd_tj;
 			sourceTree = "<group>";
@@ -211,6 +224,7 @@
 			files = (
 				AC46D5691AF4943200E2A0C3 /* Main.storyboard in Resources */,
 				AC46D56E1AF4943200E2A0C3 /* LaunchScreen.xib in Resources */,
+				AC46D5901AF4FCC200E2A0C3 /* square-checkmark-128.png in Resources */,
 				AC46D56B1AF4943200E2A0C3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,10 +244,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */,
+				AC46D58E1AF4E1E500E2A0C3 /* ImageCell.m in Sources */,
 				AC46D5881AF4AD4E00E2A0C3 /* UserNameCell.m in Sources */,
 				AC46D5851AF498E900E2A0C3 /* SearchAndChooseUserTableViewController.m in Sources */,
 				AC46D58B1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m in Sources */,
 				AC46D5601AF4943200E2A0C3 /* main.m in Sources */,
+				7C352142302FCE64274893ED /* InstagramAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +440,7 @@
 				AC46D57F1AF4943200E2A0C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC46D5801AF4943200E2A0C3 /* Build configuration list for PBXNativeTarget "klngrd_tjTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +449,7 @@
 				AC46D5821AF4943200E2A0C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 sald.in. All rights reserved.
 //
 
-#define instagramClientID @"b9e8581bbbab4c7db875b9deb5d32a38"
-#define instagramApiSearchUserStringFormat @"https://api.instagram.com/v1/users/search?q=%@&client_id=%@"
-
 #import "SearchAndChooseUserTableViewController.h"
 #import "UserNameCell.h"
 #import "ImagesCollectionViewController.h"
+#import "InstagramAPI.h"
 
 @interface SearchAndChooseUserTableViewController ()
 
@@ -40,7 +38,7 @@
 
 - (void)startNewSearchUsersTaskWithUsernameString:(NSString *)usernameString
 {
-    NSString *urlString = [NSString stringWithFormat:instagramApiSearchUserStringFormat, usernameString, instagramClientID];
+    NSString *urlString = [InstagramAPI buildSearchUsersURLStringForUsername:usernameString];
     NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(!error){
             NSLog(@"datatask complete");
@@ -134,8 +132,8 @@
 #pragma mark segue preparation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSString *selectedUserName = _parsedResponse[[self.tableView indexPathForSelectedRow].row];
+    NSDictionary *selectedUser = _parsedResponse[[self.tableView indexPathForSelectedRow].row];
     ImagesCollectionViewController *vc = [segue destinationViewController];
-    vc.userName = selectedUserName;
+    vc.user = selectedUser;
 }
 @end
