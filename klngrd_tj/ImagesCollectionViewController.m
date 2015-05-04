@@ -29,6 +29,9 @@
     _deselectedImages = [NSMutableArray array];
 
     _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
+    UIBarButtonItem *generatePDFAndPrintBtn = [[UIBarButtonItem alloc] initWithTitle:@"Print" style:UIBarButtonItemStylePlain target:self action:@selector(generatePDFAndSendToPrint)];
+    self.navigationItem.rightBarButtonItem = generatePDFAndPrintBtn;
     
     [self fetchBestPhotosForCurrentUser];
 }
@@ -68,6 +71,11 @@
     }];
 
     return parsedResponse;
+}
+
+- (void)generatePDFAndSendToPrint
+{
+    NSLog(@"%@", @"[generatePDFAndSendToPrint] invoked");
 }
 
 #pragma mark <UICollectionViewDataSource>
