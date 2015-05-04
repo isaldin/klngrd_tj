@@ -64,7 +64,7 @@
 
     NSMutableArray *parsedResponse = [NSMutableArray array];
     [json[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [parsedResponse addObject:obj[@"images"][@"thumbnail"][@"url"]];
+        [parsedResponse addObject:obj[@"images"][@"standard_resolution"][@"url"]];
     }];
 
     return parsedResponse;
