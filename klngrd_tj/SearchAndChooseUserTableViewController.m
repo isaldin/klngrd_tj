@@ -38,8 +38,14 @@
 
 - (void)startNewSearchUsersTaskWithUsernameString:(NSString *)usernameString
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     NSString *urlString = [InstagramAPI buildSearchUsersURLStringForUsername:usernameString];
     NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
+
         if(!error){
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             _parsedResponse = [self parseApiResponse:json];
@@ -75,7 +81,6 @@
 
 #pragma mark searchDisplayController delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [_session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
         [dataTasks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

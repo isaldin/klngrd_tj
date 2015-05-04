@@ -18,7 +18,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    self.previewAndPrintWebView.delegate = self;
     [self.previewAndPrintWebView loadHTMLString:self.htmlString baseURL:nil];
+
+    self.barBtnPrint.enabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +31,7 @@
 
 - (IBAction)cancelTapped:(id)sender
 {
+    [self.previewAndPrintWebView stopLoading];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)printTapped:(id)sender
@@ -45,6 +49,23 @@
     [pic presentAnimated:YES completionHandler:^(UIPrintInteractionController *pic2, BOOL completed, NSError *error) {
         // indicate done or error
     }];
+}
+
+#pragma mark webView delegate
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    //
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    self.barBtnPrint.enabled = YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something going wrong :(" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
 }
 
 /*
