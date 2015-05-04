@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2533EE071AF79113007D9EBB /* PreviewAndPrintWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2533EE061AF79113007D9EBB /* PreviewAndPrintWebViewController.m */; };
 		7C352142302FCE64274893ED /* InstagramAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3521E55B789D5EC3132880 /* InstagramAPI.m */; };
 		AC46D5601AF4943200E2A0C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D55F1AF4943200E2A0C3 /* main.m */; };
 		AC46D5631AF4943200E2A0C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D5621AF4943200E2A0C3 /* AppDelegate.m */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2533EE051AF79113007D9EBB /* PreviewAndPrintWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAndPrintWebViewController.h; sourceTree = "<group>"; };
+		2533EE061AF79113007D9EBB /* PreviewAndPrintWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAndPrintWebViewController.m; sourceTree = "<group>"; };
 		7C3521E55B789D5EC3132880 /* InstagramAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramAPI.m; sourceTree = "<group>"; };
 		7C352259FF719B09C07D2003 /* InstagramAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramAPI.h; sourceTree = "<group>"; };
 		AC46D55A1AF4943100E2A0C3 /* klngrd_tj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = klngrd_tj.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +122,8 @@
 				7C3521E55B789D5EC3132880 /* InstagramAPI.m */,
 				7C352259FF719B09C07D2003 /* InstagramAPI.h */,
 				C9C6DAD3CDE936381310CACF /* ThirdPartyLibs */,
+				2533EE051AF79113007D9EBB /* PreviewAndPrintWebViewController.h */,
+				2533EE061AF79113007D9EBB /* PreviewAndPrintWebViewController.m */,
 			);
 			path = klngrd_tj;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				AC46D58B1AF4DFBD00E2A0C3 /* ImagesCollectionViewController.m in Sources */,
 				AC46D5601AF4943200E2A0C3 /* main.m in Sources */,
 				7C352142302FCE64274893ED /* InstagramAPI.m in Sources */,
+				2533EE071AF79113007D9EBB /* PreviewAndPrintWebViewController.m in Sources */,
 				C9C6D3FE522DBCF56E5C38B2 /* BNHtmlPdfKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

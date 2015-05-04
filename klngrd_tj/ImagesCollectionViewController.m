@@ -9,6 +9,7 @@
 #import "ImagesCollectionViewController.h"
 #import "ImageCell.h"
 #import "InstagramAPI.h"
+#import "PreviewAndPrintWebViewController.h"
 
 @interface ImagesCollectionViewController ()
 
@@ -30,7 +31,7 @@
 
     _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
-    UIBarButtonItem *generatePDFAndPrintBtn = [[UIBarButtonItem alloc] initWithTitle:@"Print" style:UIBarButtonItemStylePlain target:self action:@selector(generatePDFAndSendToPrint)];
+    UIBarButtonItem *generatePDFAndPrintBtn = [[UIBarButtonItem alloc] initWithTitle:@"Preview&Print" style:UIBarButtonItemStylePlain target:self action:@selector(generateHTMLAndSendToPreview)];
     self.navigationItem.rightBarButtonItem = generatePDFAndPrintBtn;
     
     [self fetchBestPhotosForCurrentUser];
@@ -67,15 +68,27 @@
 
     NSMutableArray *parsedResponse = [NSMutableArray array];
     [json[@"data"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [parsedResponse addObject:obj[@"images"][@"standard_resolution"][@"url"]];
+        [parsedResponse addObject:obj[@"images"][@"low_resolution"][@"url"]];
     }];
 
     return parsedResponse;
 }
 
-- (void)generatePDFAndSendToPrint
+- (void)generateHTMLAndSendToPreview
 {
-    NSLog(@"%@", @"[generatePDFAndSendToPrint] invoked");
+    NSMutableArray *imagesHtmlArray = [NSMutableArray array];
+    [_selectedImages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [imagesHtmlArray addObject:[NSString stringWithFormat:@"<img src=\"%@\">\n", obj]];
+    }];
+
+    NSString *images = [imagesHtmlArray componentsJoinedByString:@""];
+    NSString *htmlString = [NSString stringWithFormat:@"<html>\n<head>\n</head>\n<body>\n%@</body>\n</html>", images];
+
+    PreviewAndPrintWebViewController *previewAndPrintWebViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PreviewAndPrintWebViewSID"];
+    previewAndPrintWebViewController.htmlString = htmlString;
+    [self.navigationController presentViewController:previewAndPrintWebViewController animated:YES completion:^{
+        //
+    }];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -136,36 +149,5 @@
 {
     return CGSizeMake(150.f, 30.f);
 }
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
