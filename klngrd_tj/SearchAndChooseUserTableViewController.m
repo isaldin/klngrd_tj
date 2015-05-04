@@ -41,7 +41,6 @@
     NSString *urlString = [InstagramAPI buildSearchUsersURLStringForUsername:usernameString];
     NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(!error){
-            NSLog(@"datatask complete");
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             _parsedResponse = [self parseApiResponse:json];
 
@@ -79,14 +78,11 @@
 //- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [_session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
-        NSLog(@"datatasks count: %d", dataTasks.count);
         [dataTasks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSURLSessionDataTask *dataTask = obj;
             [dataTask cancel];
         }];
     }];
-
-    NSLog(@"search string is [%@]", searchText);
 
     if([searchText isEqualToString:@""]){
         _parsedResponse = @[];

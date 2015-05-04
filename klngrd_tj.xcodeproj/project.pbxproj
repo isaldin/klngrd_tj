@@ -21,7 +21,6 @@
 		AC46D58E1AF4E1E500E2A0C3 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D58D1AF4E1E500E2A0C3 /* ImageCell.m */; };
 		AC46D5931AF51AF400E2A0C3 /* minus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC46D5911AF51AF400E2A0C3 /* minus_icon.png */; };
 		AC46D5941AF51AF400E2A0C3 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC46D5921AF51AF400E2A0C3 /* add_icon.png */; };
-		C9C6D3FE522DBCF56E5C38B2 /* BNHtmlPdfKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C6D832B455C16B2E8D4321 /* BNHtmlPdfKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +59,6 @@
 		AC46D58D1AF4E1E500E2A0C3 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
 		AC46D5911AF51AF400E2A0C3 /* minus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus_icon.png; sourceTree = "<group>"; };
 		AC46D5921AF51AF400E2A0C3 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
-		C9C6D832B455C16B2E8D4321 /* BNHtmlPdfKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHtmlPdfKit.m; sourceTree = "<group>"; };
-		C9C6D962A502840B2D109E58 /* BNHtmlPdfKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHtmlPdfKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +118,6 @@
 				AC46D55D1AF4943200E2A0C3 /* Supporting Files */,
 				7C3521E55B789D5EC3132880 /* InstagramAPI.m */,
 				7C352259FF719B09C07D2003 /* InstagramAPI.h */,
-				C9C6DAD3CDE936381310CACF /* ThirdPartyLibs */,
 				2533EE051AF79113007D9EBB /* PreviewAndPrintWebViewController.h */,
 				2533EE061AF79113007D9EBB /* PreviewAndPrintWebViewController.m */,
 			);
@@ -152,23 +148,6 @@
 				AC46D5781AF4943200E2A0C3 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C9C6D3004E6D0F86A4DE81BA /* BNHtmlPdfKit */ = {
-			isa = PBXGroup;
-			children = (
-				C9C6D832B455C16B2E8D4321 /* BNHtmlPdfKit.m */,
-				C9C6D962A502840B2D109E58 /* BNHtmlPdfKit.h */,
-			);
-			path = BNHtmlPdfKit;
-			sourceTree = "<group>";
-		};
-		C9C6DAD3CDE936381310CACF /* ThirdPartyLibs */ = {
-			isa = PBXGroup;
-			children = (
-				C9C6D3004E6D0F86A4DE81BA /* BNHtmlPdfKit */,
-			);
-			path = ThirdPartyLibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +260,6 @@
 				AC46D5601AF4943200E2A0C3 /* main.m in Sources */,
 				7C352142302FCE64274893ED /* InstagramAPI.m in Sources */,
 				2533EE071AF79113007D9EBB /* PreviewAndPrintWebViewController.m in Sources */,
-				C9C6D3FE522DBCF56E5C38B2 /* BNHtmlPdfKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

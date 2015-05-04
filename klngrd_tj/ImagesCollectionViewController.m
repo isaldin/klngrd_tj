@@ -46,7 +46,8 @@
 - (void)fetchBestPhotosForCurrentUser
 {
     NSString *fetchingURL = [InstagramAPI buildRecentImagesURLStringForUsernameWithId:self.user[@"id"]];
-    NSLog(@"%@", fetchingURL);
+
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     NSURLSessionDataTask *dataTask = [_session dataTaskWithURL:[NSURL URLWithString:fetchingURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -54,6 +55,7 @@
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     }];
 
